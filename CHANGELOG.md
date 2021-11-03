@@ -3,6 +3,9 @@
 ## [Unreleased]
 ### Changed
 * [Active support for PHP 7.4 ends Q4 2021](https://www.php.net/supported-versions.php). This SDK will therefore not be supported on PHP 7.x anymore.
+* It is now mandatory to provide a Firebase Project ID. When the project ID cannot be determined from the
+  provided credentials (usually a service account), it can be provided by setting the `GOOGLE_CLOUD_PROJECT=<project-id>`
+  environment variable.
 
 ### Removed
 * Removed support for the `FIREBASE_CREDENTIALS` environment variable to be used for credential discovery. 
