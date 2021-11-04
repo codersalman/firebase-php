@@ -29,7 +29,6 @@ use Kreait\Firebase\Exception\Auth\UserNotFound;
 use Kreait\Firebase\Request;
 use Kreait\Firebase\Value\ClearTextPassword;
 use Kreait\Firebase\Value\Email;
-use Kreait\Firebase\Value\PhoneNumber;
 use Kreait\Firebase\Value\Provider;
 use Kreait\Firebase\Value\Uid;
 use Lcobucci\JWT\Token;
@@ -100,7 +99,7 @@ interface Auth
      * @throws Exception\AuthException
      * @throws Exception\FirebaseException
      */
-    public function getUserByPhoneNumber(PhoneNumber|string $phoneNumber): UserRecord;
+    public function getUserByPhoneNumber(string|\Stringable $phoneNumber): UserRecord;
 
     /**
      * @throws Exception\AuthException

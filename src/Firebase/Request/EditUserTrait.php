@@ -7,7 +7,6 @@ namespace Kreait\Firebase\Request;
 use Kreait\Firebase\Exception\InvalidArgumentException;
 use Kreait\Firebase\Value\ClearTextPassword;
 use Kreait\Firebase\Value\Email;
-use Kreait\Firebase\Value\PhoneNumber;
 use Kreait\Firebase\Value\Uid;
 use Kreait\Firebase\Value\Url;
 use Stringable;
@@ -21,7 +20,7 @@ trait EditUserTrait
     protected ?Email $email = null;
     protected ?string $displayName = null;
     protected ?bool $emailIsVerified = null;
-    protected ?PhoneNumber $phoneNumber = null;
+    protected ?string $phoneNumber = null;
     protected ?Url $photoUrl = null;
     protected ?bool $markAsEnabled = null;
     protected ?bool $markAsDisabled = null;
@@ -150,9 +149,7 @@ trait EditUserTrait
 
     public function withPhoneNumber(Stringable|string|null $phoneNumber): static
     {
-        $phoneNumber = $phoneNumber !== null
-            ? new PhoneNumber((string) $phoneNumber)
-            : null;
+        $phoneNumber = $phoneNumber !== null ? (string) $phoneNumber : null;
 
         $request = clone $this;
         $request->phoneNumber = $phoneNumber;
@@ -230,7 +227,7 @@ trait EditUserTrait
             'displayName' => $this->displayName,
             'email' => $this->email?->__toString(),
             'emailVerified' => $this->emailIsVerified,
-            'phoneNumber' => $this->phoneNumber?->__toString(),
+            'phoneNumber' => $this->phoneNumber,
             'photoUrl' => $this->photoUrl?->__toString(),
             'password' => $this->clearTextPassword?->__toString(),
         ], static fn ($value) => $value !== null);
